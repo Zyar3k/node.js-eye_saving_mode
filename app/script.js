@@ -14,13 +14,15 @@ const formatTime = time => {
   return parsedTime
 }
 
+
+
 class App extends React.Component {
   constructor(){
     super();
 
     this.state ={
       status: 'off',
-      time: 213,
+      time: 1200,
       timer: null,
     };
   }
@@ -30,6 +32,8 @@ class App extends React.Component {
 
 
     const {status, time, timer} = this.state;
+
+    
 
     return (
       <div>
@@ -42,12 +46,23 @@ class App extends React.Component {
         {(status === 'work') && <img src="./images/work.png" />}
         {(status === 'rest') && <img src="./images/rest.png" />}
         {(status !== 'off') && <div className="timer">{formatTime(time)}</div>}
-        {(status === 'off') && <button className="btn">Start</button>}
+        {(status === 'off') && <button className="btn" onClick={this.startTimer}>Start</button>}
         {(status !== 'off') && <button className="btn">Stop</button>}
         <button className="btn btn-close">X</button>
       </div>
     )
   }
+
+  step = () => {};
+
+  startTimer = () => {
+    this.setState({
+      timer: setInterval(this.step, 1200),
+      status: 'work',
+    });
+  }
+
+
 };
 
 render(<App />, document.querySelector('#app'));
