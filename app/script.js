@@ -22,7 +22,7 @@ class App extends React.Component {
 
     this.state ={
       status: 'off',
-      time: 1200,
+      time: 4,
       timer: null,
     };
   }
@@ -53,11 +53,43 @@ class App extends React.Component {
     )
   }
 
-  step = () => {};
+  step = () => {
+    this.setState({
+      time: this.state.time - 1,
+    })
+
+    let actualTime = this.state.time
+
+    if(actualTime < 0){
+      switch (this.state.status){
+        
+        case 'work':
+          this.state(
+            {
+              status: 'rest',
+              time: 20
+            }
+          );
+          break
+
+        case 'rest':
+          this.state(
+            {
+              status: 'work',
+              time: 1200,
+            }
+          )
+          break
+
+      }
+    }
+
+    console.log('tic tac');
+  };
 
   startTimer = () => {
     this.setState({
-      timer: setInterval(this.step, 1200),
+      timer: setInterval(this.step, 1000),
       status: 'work',
     });
   }
