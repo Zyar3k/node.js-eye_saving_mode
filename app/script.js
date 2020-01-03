@@ -22,7 +22,7 @@ class App extends React.Component {
 
     this.state ={
       status: 'off',
-      time: 4,
+      time: 1200,
       timer: null,
     };
   }
@@ -64,7 +64,7 @@ class App extends React.Component {
       switch (this.state.status){
         
         case 'work':
-          this.state(
+          this.setState(
             {
               status: 'rest',
               time: 20
@@ -73,7 +73,7 @@ class App extends React.Component {
           break
 
         case 'rest':
-          this.state(
+          this.setState(
             {
               status: 'work',
               time: 1200,
