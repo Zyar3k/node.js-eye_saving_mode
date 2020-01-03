@@ -15,8 +15,6 @@ const formatTime = time => {
   return parsedTime;
 };
 
-
-
 class App extends React.Component {
   constructor() {
     super();
